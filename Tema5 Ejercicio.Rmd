@@ -1,0 +1,38 @@
+---
+title: "UGR MDS Tema5"
+author: "franmarq@gmail.com"
+date: '2022-12-15'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(smacof)
+```
+
+Ejercicio 5.1: Realiza el análisis anterior y comenta los resultados obtenidos.
+
+```{r ejemplo51}
+
+## Solución simple de SMACOF para los datos de kinship
+data(kinshipdelta)
+res = smacofSym(kinshipdelta)
+res
+summary(res)
+## Solución no métrica 3D de SMACOF para los datos de trading
+data(trading)
+res = smacofSym(trading, ndim = 3, type="ordinal", ties = "secondary")
+res
+```
+Ejercicio 5.2: Realiza el análisis anterior y comenta los resultados obtenidos.
+
+```{r ejercicio52}
+
+data(perception)
+res <- smacofIndDiff(perception)
+res
+summary(res)
+res.id <- smacofIndDiff(perception, constraint = "identity")
+res.diag <- smacofIndDiff(perception, constraint = "indscal")
+res.idio <- smacofIndDiff(perception, constraint = "idioscal")
+```
